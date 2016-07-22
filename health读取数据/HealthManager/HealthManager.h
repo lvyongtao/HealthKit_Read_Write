@@ -44,6 +44,12 @@
  */
 - (void)getRealTimeStepCountArrCompletionHandler:(void(^)(HealthModel *model, NSError *error))handler;
 /*!
+ *  @brief  获取当天实时距离
+ *
+ *  @param handler 回调
+ */
+- (void)getRealTimeDistanceCompletionHandler:(void(^)(double value, NSError *error))handler;
+/*!
  *  @brief  获取一定时间段步数
  *
  *  @param predicate 时间段
@@ -57,6 +63,21 @@
  *  @param handler   回调
  */
 - (void)getStepArr:(NSPredicate *)predicate completionHandler:(void(^)(HealthModel *model, NSError *error))handler;
+
+/*!
+ *  @brief  获取一定时间段距离
+ *
+ *  @param predicate 时间段
+ *  @param handler   回调
+ */
+- (void)getDistance:(NSPredicate *)predicate completionHandler:(void(^)(double value, NSError *error))handler;
+/*!
+ *  @brief  获取一定时间段距离数组
+ *
+ *  @param predicate 时间段
+ *  @param handler   回调
+ */
+- (void)getDistanceArr:(NSPredicate *)predicate completionHandler:(void(^)(HealthModel *model, NSError *error))handler;
 /*!
  *  @brief  当天时间段
  *

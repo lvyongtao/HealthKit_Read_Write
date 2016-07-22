@@ -64,18 +64,18 @@
 //        [self performSelectorOnMainThread:@selector(updateUI) withObject:nil waitUntilDone:NO];
 //    }];
     
-    [[HealthManager shareManager] getRealTimeStepCountArrCompletionHandler:^(HealthModel *model, NSError *error) {
-        if ([model.stepCounts count] >0) {
-            for (int i = 0; i < [model.stepCounts count]; i ++) {
-                HealthDetailModel *detailModel = model.stepCounts[i];
-                NSLog(@"当天detailModel---->%@---->%@---->%f",detailModel.startDate,detailModel.endDate,detailModel.stepDouble);
-            }
-            self.dataArray = model.stepCounts;
-             [self performSelectorOnMainThread:@selector(updateUI) withObject:nil waitUntilDone:NO];
-        }else{
-            NSLog(@"当天没有运动");
-        }
-    }];
+//    [[HealthManager shareManager] getRealTimeStepCountArrCompletionHandler:^(HealthModel *model, NSError *error) {
+//        if ([model.stepCounts count] >0) {
+//            for (int i = 0; i < [model.stepCounts count]; i ++) {
+//                HealthDetailModel *detailModel = model.stepCounts[i];
+//                NSLog(@"当天detailModel---->%@---->%@---->%f",detailModel.startDate,detailModel.endDate,detailModel.stepDouble);
+//            }
+//            self.dataArray = model.stepCounts;
+//             [self performSelectorOnMainThread:@selector(updateUI) withObject:nil waitUntilDone:NO];
+//        }else{
+//            NSLog(@"当天没有运动");
+//        }
+//    }];
 //
 //    
 //    [[HealthManager shareManager] getKilocalorieUnit:[HealthManager predicateForSamplesToday] quantityType:[HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned] completionHandler:^(double value, NSError *error) {
@@ -102,17 +102,30 @@
 //    }];
     
     
-    [[HealthManager shareManager] getStepArr:predicate_date completionHandler:^(HealthModel *model, NSError *error) {
-        if ([model.stepCounts count] >0) {
-            for (int i = 0; i < [model.stepCounts count]; i ++) {
-                HealthDetailModel *detailModel = model.stepCounts[i];
-                NSLog(@"detailModel---->%@---->%@---->%f",detailModel.startDate,detailModel.endDate,detailModel.stepDouble);
-            }
-             self.dataArray = model.stepCounts;
-             [self performSelectorOnMainThread:@selector(updateUI) withObject:nil waitUntilDone:NO];
-        }else{
-            NSLog(@"时间段没有运动");
+//    [[HealthManager shareManager] getStepArr:predicate_date completionHandler:^(HealthModel *model, NSError *error) {
+//        if ([model.stepCounts count] >0) {
+//            for (int i = 0; i < [model.stepCounts count]; i ++) {
+//                HealthDetailModel *detailModel = model.stepCounts[i];
+//                NSLog(@"detailModel---->%@---->%@---->%f",detailModel.startDate,detailModel.endDate,detailModel.stepDouble);
+//            }
+//             self.dataArray = model.stepCounts;
+//             [self performSelectorOnMainThread:@selector(updateUI) withObject:nil waitUntilDone:NO];
+//        }else{
+//            NSLog(@"时间段没有运动");
+//        }
+//    }];
+    
+    [[HealthManager shareManager] getRealTimeDistanceCompletionHandler:^(double value, NSError *error) {
+        if (error) {
+            NSLog(@"%@",error);
         }
+        NSLog(@"当天行走距离 = %.2lf",value);
+    }];
+    [[HealthManager shareManager] getDistance:predicate_date completionHandler:^(double value, NSError *error) {
+        if (error) {
+            NSLog(@"%@",error);
+        }
+            NSLog(@"10天行走距离 = %.2lf",value);
     }];
     
 

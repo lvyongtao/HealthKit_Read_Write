@@ -77,6 +77,7 @@ static HealthManager *manager = nil;
 
 //读取权限
 - (NSSet *)dataTypesRead{
+    
     HKQuantityType *heightType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeight];
     HKQuantityType *weightType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMass];
     HKQuantityType *temperatureType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyTemperature];
@@ -84,8 +85,9 @@ static HealthManager *manager = nil;
     HKCharacteristicType *sexType = [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierBiologicalSex];
     HKQuantityType *stepCountType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
     HKQuantityType *activeEnergyType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned];
-    
-    return [NSSet setWithObjects:heightType, temperatureType,birthdayType,sexType,weightType,stepCountType, activeEnergyType,nil];
+    //HKQuantityTypeIdentifierDistanceWalkingRunning
+    HKQuantityType *distanceWalkingType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceWalkingRunning];
+    return [NSSet setWithObjects:heightType, temperatureType,birthdayType,sexType,weightType,stepCountType, activeEnergyType,distanceWalkingType,nil];
 }
 
 #pragma mark --当天时间段
@@ -200,6 +202,62 @@ static HealthManager *manager = nil;
         }];
     }
 }
+
+#pragma mark --获取当天的距离
+- (void)getRealTimeDistanceCompletionHandler:(void (^)(double, NSError *))handler{
+    if(FSystemVersion < 8.0){
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"iOS 系统低于8.0"                                                                      forKey:NSLocalizedDescriptionKey];
+        NSError *aError = [NSError errorWithDomain:ErrorMessage code:0 userInfo:userInfo];
+        handler(0,aError);
+    }else{
+        HKSampleType *sampleType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceWalkingRunning];
+        HKObserverQuery *query = [[HKObserverQuery alloc] initWithSampleType:sampleType predicate:nil updateHandler:^(HKObserverQuery * query, HKObserverQueryCompletionHandler  _Nonnull completionHandler, NSError * _Nullable error) {
+            if (error) {
+                handler(0,error);
+                abort();
+            }
+            [self getDistance:[HealthManager predicateForSamplesToday] completionHandler:^(double value, NSError *error) {
+                handler(value,error);
+            }];
+        }];
+        [self.healthStore executeQuery:query];
+    }
+    
+}
+#pragma mark --获取距离
+- (void)getDistance:(NSPredicate *)predicate completionHandler:(void (^)(double, NSError *))handler{
+    if(FSystemVersion < 8.0){
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"iOS 系统低于8.0"                                                                      forKey:NSLocalizedDescriptionKey];
+        NSError *aError = [NSError errorWithDomain:ErrorMessage code:0 userInfo:userInfo];
+        handler(0,aError);
+    }else{
+        HKQuantityType *stepType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceWalkingRunning];
+        [self.healthStore executeQuerySampleOfType:stepType predicate:predicate completion:^(NSArray *results, NSError *error) {
+            if(error){
+                handler(0,error);
+            }else{
+                NSLog(@"%@",results);
+                NSInteger totleDistance = 0;
+                for(HKQuantitySample *quantitySample in results)
+                {
+                    HKQuantity *quantity = quantitySample.quantity;
+                    //一公里==1000米 （米）
+                    HKUnit *heightUnit = [HKUnit meterUnit];
+                    
+                    double userDistance = [quantity doubleValueForUnit:heightUnit];
+                    NSLog(@"%f",userDistance);
+                    totleDistance += userDistance;
+                }
+                handler(totleDistance,error);
+            }
+        }];
+    }
+}
+#pragma mark --获取距离数组
+- (void)getDistanceArr:(NSPredicate *)predicate completionHandler:(void (^)(HealthModel *, NSError *))handler{
+    
+}
+
 //日期显示的格式
 - (NSString *)stringFromDate:(NSDate *)date{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
