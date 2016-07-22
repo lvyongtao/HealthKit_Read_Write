@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D80DBEDC1D41C3F400027519 /* health读取数据.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = D80DBEDB1D41C3F400027519 /* health读取数据.entitlements */; };
 		D816F9BA1D41AEAC00357A65 /* HealthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D816F9B41D41AEAC00357A65 /* HealthManager.m */; };
 		D816F9BB1D41AEAC00357A65 /* HealthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D816F9B61D41AEAC00357A65 /* HealthModel.m */; };
-		D816F9BC1D41AEAC00357A65 /* health读取数据.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = D816F9B71D41AEAC00357A65 /* health读取数据.entitlements */; };
 		D816F9BD1D41AEAC00357A65 /* HKHealthStore+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D816F9B91D41AEAC00357A65 /* HKHealthStore+Extension.m */; };
 		D87122A01D3CA232005571B0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D871229F1D3CA232005571B0 /* main.m */; };
 		D87122A31D3CA233005571B0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D87122A21D3CA233005571B0 /* AppDelegate.m */; };
@@ -21,12 +21,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D80DBEDB1D41C3F400027519 /* health读取数据.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "health读取数据.entitlements"; path = "health读取数据/health读取数据.entitlements"; sourceTree = SOURCE_ROOT; };
 		D816F9B21D41AEAC00357A65 /* ACMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACMacros.h; sourceTree = "<group>"; };
 		D816F9B31D41AEAC00357A65 /* HealthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthManager.h; sourceTree = "<group>"; };
 		D816F9B41D41AEAC00357A65 /* HealthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthManager.m; sourceTree = "<group>"; };
 		D816F9B51D41AEAC00357A65 /* HealthModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthModel.h; sourceTree = "<group>"; };
 		D816F9B61D41AEAC00357A65 /* HealthModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthModel.m; sourceTree = "<group>"; };
-		D816F9B71D41AEAC00357A65 /* health读取数据.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "health读取数据.entitlements"; sourceTree = "<group>"; };
 		D816F9B81D41AEAC00357A65 /* HKHealthStore+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HKHealthStore+Extension.h"; sourceTree = "<group>"; };
 		D816F9B91D41AEAC00357A65 /* HKHealthStore+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HKHealthStore+Extension.m"; sourceTree = "<group>"; };
 		D871229B1D3CA232005571B0 /* health读取数据.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "health读取数据.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,7 +57,7 @@
 		D816F9B11D41AEAC00357A65 /* HealthManager */ = {
 			isa = PBXGroup;
 			children = (
-				D816F9B71D41AEAC00357A65 /* health读取数据.entitlements */,
+				D80DBEDB1D41C3F400027519 /* health读取数据.entitlements */,
 				D816F9B21D41AEAC00357A65 /* ACMacros.h */,
 				D816F9B31D41AEAC00357A65 /* HealthManager.h */,
 				D816F9B41D41AEAC00357A65 /* HealthManager.m */,
@@ -186,7 +186,7 @@
 			files = (
 				D87122AE1D3CA233005571B0 /* LaunchScreen.storyboard in Resources */,
 				D87122AB1D3CA233005571B0 /* Assets.xcassets in Resources */,
-				D816F9BC1D41AEAC00357A65 /* health读取数据.entitlements in Resources */,
+				D80DBEDC1D41C3F400027519 /* health读取数据.entitlements in Resources */,
 				D87122A91D3CA233005571B0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,7 +319,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "health读取数据/health读取数据.entitlements";
 				INFOPLIST_FILE = "health读取数据/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "lvyongtao.com.health----";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -332,7 +332,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "health读取数据/health读取数据.entitlements";
 				INFOPLIST_FILE = "health读取数据/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "lvyongtao.com.health----";
 				PRODUCT_NAME = "$(TARGET_NAME)";
