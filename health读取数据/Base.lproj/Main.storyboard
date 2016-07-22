@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HealthKit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2o-bP-A8S">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HealthKit当日数据" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2o-bP-A8S">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="RAh-NE-BU1"/>
                                 </constraints>
@@ -30,8 +30,8 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="i2o-bP-A8S" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="88" id="HNz-0P-RhP"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="i2o-bP-A8S" secondAttribute="trailing" constant="132" id="Mgq-jY-N0x"/>
+                            <constraint firstItem="i2o-bP-A8S" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="HNz-0P-RhP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="i2o-bP-A8S" secondAttribute="trailing" id="Mgq-jY-N0x"/>
                             <constraint firstItem="i2o-bP-A8S" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="12" id="yKD-Jo-Hgh"/>
                         </constraints>
                     </view>

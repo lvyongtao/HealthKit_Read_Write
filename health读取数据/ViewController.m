@@ -43,7 +43,7 @@
     _HealthtableView.delegate = self;
     _HealthtableView.dataSource = self;
     _HealthtableView.backgroundColor = [UIColor clearColor];
-    _HealthtableView.bounces = NO;
+    _HealthtableView.bounces = YES;
     _HealthtableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.view addSubview:_HealthtableView];
 }
@@ -55,14 +55,30 @@
 }
 - (void)initHealthData{
     
-//    [[HealthManager shareManager] getRealTimeStepCountCompletionHandler:^(double value, NSError *error) {
-//        if (error) {
-//            NSLog(@"%@",error);
-//        }
-//        NSLog(@"当天行走步数 = %.f",value);
-//        self.step = value ;
-//        [self performSelectorOnMainThread:@selector(updateUI) withObject:nil waitUntilDone:NO];
-//    }];
+    [[HealthManager shareManager] getRealTimeStepCountCompletionHandler:^(double value, NSError *error) {
+        if (error) {
+            NSLog(@"%@",error);
+        }
+        NSLog(@"%@",[NSThread currentThread]);
+        NSLog(@"当天行走步数 = %.fstep",value);
+        self.step = value ;
+        HealthDetailModel *detailModel = [[HealthDetailModel alloc] init];
+        detailModel.stepDouble = value;
+        [self.dataArray addObject:detailModel];
+        
+        [self performSelectorOnMainThread:@selector(updateUI) withObject:nil waitUntilDone:NO];
+    }];
+    
+    [[HealthManager shareManager] getKilocalorieUnit:[HealthManager predicateForSamplesToday] quantityType:[HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned] completionHandler:^(double value, NSError *error) {
+        if (error) {
+            NSLog(@"%@",error);
+        }
+        NSLog(@"%@",[NSThread currentThread]);
+        NSLog(@"当天消耗的卡路里 ＝ %.2lfkcal",value);
+        HealthDetailModel *detailModel = [[HealthDetailModel alloc] init];
+        detailModel.stepDouble = value;
+        [self.dataArray addObject:detailModel];
+    }];
     
 //    [[HealthManager shareManager] getRealTimeStepCountArrCompletionHandler:^(HealthModel *model, NSError *error) {
 //        if ([model.stepCounts count] >0) {
@@ -78,21 +94,33 @@
 //    }];
 //
 //    
-//    [[HealthManager shareManager] getKilocalorieUnit:[HealthManager predicateForSamplesToday] quantityType:[HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned] completionHandler:^(double value, NSError *error) {
-//        if (error) {
-//            NSLog(@"%@",error);
-//        }
-//        NSLog(@"当天消耗的卡路里 ＝ %.2lf",value);
-//    }];
+
 //
 //    
     NSDate *endDate = [NSDate date];
     //设置时间短
     NSTimeInterval timeInterval= [endDate timeIntervalSinceReferenceDate];
-    timeInterval -=3600*24*10;
+    timeInterval -=3600*24*32;
     NSDate *beginDate = [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
+//    NSDate *Date = [NSDate d]
     NSPredicate *predicate_date =
     [NSPredicate predicateWithFormat:@"endDate >= %@ AND startDate <= %@", beginDate,endDate];
+    
+    
+    
+    
+    
+    
+    [[HealthManager shareManager] getKilocalorieUnit:predicate_date quantityType:[HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned] completionHandler:^(double value, NSError *error) {
+        if (error) {
+            NSLog(@"%@",error);
+        }
+        NSLog(@"%@",[NSThread currentThread]);
+        NSLog(@"消耗的卡路里 ＝ %.2lf",value);
+        HealthDetailModel *detailModel = [[HealthDetailModel alloc] init];
+        detailModel.stepDouble = value;
+        [self.dataArray addObject:detailModel];
+    }];
 //
 //    [[HealthManager shareManager] getStepCount:predicate_date completionHandler:^(double value, NSError *error) {
 //        if (error) {
@@ -115,20 +143,28 @@
 //        }
 //    }];
     
-    [[HealthManager shareManager] getRealTimeDistanceCompletionHandler:^(double value, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        }
-        NSLog(@"当天行走距离 = %.2lf",value);
-    }];
-    [[HealthManager shareManager] getDistance:predicate_date completionHandler:^(double value, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        }
-            NSLog(@"10天行走距离 = %.2lf",value);
-    }];
+//    [[HealthManager shareManager] getRealTimeDistanceCompletionHandler:^(double value, NSError *error) {
+//        if (error) {
+//            NSLog(@"%@",error);
+//        }
+//        NSLog(@"当天行走距离 = %.2lf",value);
+//    }];
+//    [[HealthManager shareManager] getDistance:predicate_date completionHandler:^(double value, NSError *error) {
+//        if (error) {
+//            NSLog(@"%@",error);
+//        }
+//            NSLog(@"10天行走距离 = %.2lf",value);
+//    }];
     
 
+}
+
+- (NSString *)stringFromDate:(NSDate *)date{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //yyyy-MM-dd HH:mm:ss zzz
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *destDateString = [dateFormatter stringFromDate:date];
+    return destDateString;
 }
 #pragma mark
 #pragma mark ——UITableViewDataSource
@@ -142,7 +178,15 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     HealthDetailModel *model = self.dataArray[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"startdate=%@,enddate=%@,步数＝%.f",model.startDate,model.endDate,model.stepDouble];
+    if (indexPath.row == 0) {
+        cell.textLabel.text = [NSString stringWithFormat:@"当天能量消耗： %.f kcal",model.stepDouble];
+    }else if(indexPath.row == 1){
+        cell.textLabel.text = [NSString stringWithFormat:@"某段时间能量消耗： %.fkcal",model.stepDouble];
+    }else{
+        cell.textLabel.text = [NSString stringWithFormat:@"当天步数：     %.f 步",model.stepDouble];
+        
+    }
+   
     cell.textLabel.numberOfLines =0;
     
     return cell;
@@ -152,8 +196,10 @@
     return 80;
 }
 - (void)updateUI{
-    
-    [self initTableView];
+    if (!_HealthtableView) {
+         [self initTableView];
+    }
+   
 //     self.stepLable.text = [NSString stringWithFormat:@"%.f",self.step];
 }
 

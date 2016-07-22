@@ -19,6 +19,7 @@ static HealthManager *manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [[HealthManager alloc] init];
+        [manager isAvailable];
     });
     return manager;
 }
@@ -31,7 +32,7 @@ static HealthManager *manager = nil;
     @synchronized(self) {
         if (!manager) {
             manager = [super allocWithZone:zone];
-            [manager isAvailable];
+            
             return manager;
         }
     }
@@ -50,10 +51,10 @@ static HealthManager *manager = nil;
                 self.healthStore = [[HKHealthStore alloc] init];
                
                 //需要读写的数据类型
-                NSSet *writeDataTypes = [self dataTypesToWrite];
+//                NSSet *writeDataTypes = [self dataTypesToWrite];
                 NSSet *readDataTypes = [self dataTypesRead];
                 
-                [self.healthStore requestAuthorizationToShareTypes:writeDataTypes readTypes:readDataTypes completion:^(BOOL success, NSError * _Nullable error) {
+                [self.healthStore requestAuthorizationToShareTypes:nil readTypes:readDataTypes completion:^(BOOL success, NSError * _Nullable error) {
                     if (!success) {
                         //不成功的处理
                         NSLog(@"%@\n\n%@",error, [error userInfo]);
@@ -78,16 +79,17 @@ static HealthManager *manager = nil;
 //读取权限
 - (NSSet *)dataTypesRead{
     
-    HKQuantityType *heightType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeight];
-    HKQuantityType *weightType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMass];
-    HKQuantityType *temperatureType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyTemperature];
-    HKCharacteristicType *birthdayType = [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierDateOfBirth];
-    HKCharacteristicType *sexType = [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierBiologicalSex];
+//    HKQuantityType *heightType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeight];
+//    HKQuantityType *weightType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMass];
+//    HKQuantityType *temperatureType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyTemperature];
+//    HKCharacteristicType *birthdayType = [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierDateOfBirth];
+//    HKCharacteristicType *sexType = [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierBiologicalSex];
     HKQuantityType *stepCountType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
     HKQuantityType *activeEnergyType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned];
     //HKQuantityTypeIdentifierDistanceWalkingRunning
     HKQuantityType *distanceWalkingType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceWalkingRunning];
-    return [NSSet setWithObjects:heightType, temperatureType,birthdayType,sexType,weightType,stepCountType, activeEnergyType,distanceWalkingType,nil];
+//    return [NSSet setWithObjects:heightType, temperatureType,birthdayType,sexType,weightType,stepCountType, activeEnergyType,distanceWalkingType,nil];
+     return [NSSet setWithObjects:stepCountType, activeEnergyType,distanceWalkingType,nil];
 }
 
 #pragma mark --当天时间段
@@ -116,7 +118,7 @@ static HealthManager *manager = nil;
         HKObserverQuery *query = [[HKObserverQuery alloc] initWithSampleType:sampleType predicate:nil updateHandler:^(HKObserverQuery * query, HKObserverQueryCompletionHandler  _Nonnull completionHandler, NSError * _Nullable error) {
             if (error) {
                 handler(0,error);
-                abort();
+//                abort();
             }
             [self getStepCount:[HealthManager predicateForSamplesToday] completionHandler:^(double value, NSError *error) {
                 handler(value,error);

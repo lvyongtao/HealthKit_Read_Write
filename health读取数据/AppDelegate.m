@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "HealthManager.h"
+
 
 @interface AppDelegate ()
 
@@ -17,7 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+    [[HealthManager shareManager] isAvailable];
     return YES;
 }
 
