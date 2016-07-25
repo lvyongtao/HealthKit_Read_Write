@@ -8,7 +8,25 @@
 
 #import "HealthModel.h"
 
+@implementation DateModel
+
+- (DateModel *)initWithNSPredicate:(NSPredicate *)predicate_date NSDate:(NSString *)startdate{
+    if (self = [super init]) {
+        self.predicate_date = predicate_date;
+        self.startdate = startdate;
+    }
+    return self;
+}
++ (DateModel *)initWithNSPredicate:(NSPredicate *)predicate_date NSDate:(NSString *)startdate{
+    DateModel *model = [[DateModel alloc] initWithNSPredicate:predicate_date NSDate:startdate];
+    return model;
+}
+
+
+@end
+
 @implementation HealthDetailModel
+
 - (HealthDetailModel *)initWithStepDouble:(double)stepDouble andStartDate:(NSString *)startDate andEndDate:(NSString *)endDate{
     if (self = [super init]) {
         self.stepDouble = stepDouble;
@@ -33,6 +51,24 @@
 }
 + (HealthModel *)initWithStepCounts:(NSMutableArray *)stepCounts{
     HealthModel *model = [[HealthModel alloc] initWithStepCounts:stepCounts];
+    return model;
+}
+
+
+
+@end
+@implementation HealthManagerModel
+
+- (HealthManagerModel *)initWithType:(NSString *)type Startdate:(NSString *)startdate Healthcontent:(NSString *)healthcontent{
+    if (self = [super init]) {
+        self.type = type;
+        self.startdate = startdate;
+        self.healthcontent = healthcontent;
+    }
+    return self;
+}
++ (HealthManagerModel *)initWithType:(NSString *)type Startdate:(NSString *)startdate Healthcontent:(NSString *)healthcontent{
+    HealthManagerModel *model = [[HealthManagerModel alloc] initWithType:type Startdate:startdate Healthcontent:healthcontent];
     return model;
 }
 

@@ -8,6 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+
+
+@interface DateModel : NSObject
+
+@property (strong, nonatomic) NSPredicate *predicate_date;
+
+@property (copy, nonatomic) NSString *startdate;
+
+- (DateModel *)initWithNSPredicate:(NSPredicate *)predicate_date NSDate:(NSString *)startdate;
++ (DateModel *)initWithNSPredicate:(NSPredicate *)predicate_date NSDate:(NSString *)startdate;
+
+@end
+
 @interface HealthDetailModel : NSObject
 
 @property (assign, nonatomic) double stepDouble;
@@ -26,6 +39,25 @@
 
 - (HealthModel *)initWithStepCounts:(NSMutableArray *)stepCounts;
 + (HealthModel *)initWithStepCounts:(NSMutableArray *)stepCounts;
+
 @end
+
+
+@interface HealthManagerModel : NSObject
+
+
+@property (copy, nonatomic) NSString *type;
+
+@property (copy, nonatomic) NSString *startdate;
+
+@property (copy, nonatomic) NSString *healthcontent;
+
+- (HealthManagerModel *)initWithType:(NSString *)type Startdate:(NSString *)startdate Healthcontent:(NSString *)healthcontent;
++ (HealthManagerModel *)initWithType:(NSString *)type Startdate:(NSString *)startdate Healthcontent:(NSString *)healthcontent;
+
+@end
+
+
+
 
 

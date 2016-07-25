@@ -84,4 +84,18 @@
  *  @return 时间段
  */
 + (NSPredicate *)predicateForSamplesToday;
+
+/*!
+ *  @brief  当天的时间
+ *
+ *  @return 时间段
+ */
+
++ (NSString *)predicateForSamplesTodayString;
+/*!
+ *  @brief  某天时间段
+ *
+ *  @return 时间段
+ */
++ (DateModel *)predicateForCompenentsDay:(NSInteger )day;
 @end

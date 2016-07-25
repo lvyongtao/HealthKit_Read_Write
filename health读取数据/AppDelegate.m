@@ -7,7 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "HealthManager.h"
+
+#import "AppDelegate+Extension.h"
+
 
 
 @interface AppDelegate ()
@@ -16,10 +18,24 @@
 
 @implementation AppDelegate
 
+- (NSMutableArray *)dataArray{
+    if (!_dataArray) {
+        _dataArray = [[NSMutableArray alloc] init];
+    }
+    return _dataArray;
+}
+
+- (NSMutableArray *)todayArray{
+    if (!_todayArray) {
+        _todayArray = [[NSMutableArray alloc] init];
+    }
+    return _todayArray;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [[HealthManager shareManager] isAvailable];
+        [self initHealthData];
+   
     return YES;
 }
 

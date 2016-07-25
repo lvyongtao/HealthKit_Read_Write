@@ -12,6 +12,15 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (strong, nonatomic) NSMutableArray *dataArray;
+
+@property (strong, nonatomic) NSMutableArray *todayArray;
+
+
+@property (assign, nonatomic) NSInteger synctimes;
+
+@property (assign, nonatomic) NSInteger synctodaytime;
+
 
 @end
 

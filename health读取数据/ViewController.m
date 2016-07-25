@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initHealthData];
+//    [self initHealthData];
     
     // Do any additional setup after loading the view, typically from a nib.
     
@@ -159,12 +159,8 @@
 
 }
 
-- (NSString *)stringFromDate:(NSDate *)date{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    //yyyy-MM-dd HH:mm:ss zzz
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *destDateString = [dateFormatter stringFromDate:date];
-    return destDateString;
+- (void)getYesDayData{
+    
 }
 #pragma mark
 #pragma mark ——UITableViewDataSource

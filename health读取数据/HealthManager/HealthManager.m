@@ -93,11 +93,11 @@ static HealthManager *manager = nil;
 }
 
 #pragma mark --当天时间段
-+ (NSPredicate *)predicateForSamplesToday {
++ (NSPredicate *)predicateForSamplesToday{
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDate *now = [NSDate date];
-    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
-    [components setHour:0];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour fromDate:now];
+    [components setHour:8];
     [components setMinute:0];
     [components setSecond: 0];
     
@@ -105,6 +105,59 @@ static HealthManager *manager = nil;
     NSDate *endDate = [calendar dateByAddingUnit:NSCalendarUnitDay value:1 toDate:startDate options:0];
     NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionNone];
     return predicate;
+}
+
++ (NSString *)predicateForSamplesTodayString{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *now = [NSDate date];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour fromDate:now];
+    [components setHour:8];
+    [components setMinute:0];
+    [components setSecond: 0];
+    
+    NSDate *startDate = [calendar dateFromComponents:components];
+//    NSDate *endDate = [calendar dateByAddingUnit:NSCalendarUnitDay value:1 toDate:startDate options:0];
+//    NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionNone];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *destDateString = [dateFormatter stringFromDate:startDate];
+    
+    return destDateString;
+}
+#pragma mark --获取某天的时间段
++ (DateModel *)predicateForCompenentsDay:(NSInteger )day{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *now = [NSDate date];
+    
+//    NSRange days = [calendar rangeOfUnit:NSCalendarUnitDay
+//                           inUnit:NSCalendarUnitMonth
+//                          forDate:now];
+    
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd"];
+    NSString *dataTime = [formatter stringFromDate:[NSDate date]];
+    NSInteger todayDate = [dataTime integerValue];
+    
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour fromDate:now];
+    [components setHour:8];
+    [components setMinute:0];
+    [components setSecond: 0];
+
+    [components setDay:todayDate - day];
+    
+    NSDate *startDate = [calendar dateFromComponents:components];
+    NSDate *endDate = [calendar dateByAddingUnit:NSCalendarUnitDay value:1 toDate:startDate options:0];
+
+    NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionNone];
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *destDateString = [dateFormatter stringFromDate:startDate];
+    return [DateModel initWithNSPredicate:predicate NSDate:destDateString];
 }
 
 #pragma mark --实时获取步数
@@ -238,7 +291,7 @@ static HealthManager *manager = nil;
             if(error){
                 handler(0,error);
             }else{
-                NSLog(@"%@",results);
+//                NSLog(@"%@",results);
                 NSInteger totleDistance = 0;
                 for(HKQuantitySample *quantitySample in results)
                 {
@@ -247,7 +300,7 @@ static HealthManager *manager = nil;
                     HKUnit *heightUnit = [HKUnit meterUnit];
                     
                     double userDistance = [quantity doubleValueForUnit:heightUnit];
-                    NSLog(@"%f",userDistance);
+//                    NSLog(@"%f",userDistance);
                     totleDistance += userDistance;
                 }
                 handler(totleDistance,error);
