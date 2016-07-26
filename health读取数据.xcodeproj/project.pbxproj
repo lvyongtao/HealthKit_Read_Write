@@ -11,6 +11,7 @@
 		D816F9BA1D41AEAC00357A65 /* HealthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D816F9B41D41AEAC00357A65 /* HealthManager.m */; };
 		D816F9BB1D41AEAC00357A65 /* HealthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D816F9B61D41AEAC00357A65 /* HealthModel.m */; };
 		D816F9BD1D41AEAC00357A65 /* HKHealthStore+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D816F9B91D41AEAC00357A65 /* HKHealthStore+Extension.m */; };
+		D8574BAE1D47009C004CF026 /* NSArray+jsonString.m in Sources */ = {isa = PBXBuildFile; fileRef = D8574BAD1D47009C004CF026 /* NSArray+jsonString.m */; };
 		D87122A01D3CA232005571B0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D871229F1D3CA232005571B0 /* main.m */; };
 		D87122A31D3CA233005571B0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D87122A21D3CA233005571B0 /* AppDelegate.m */; };
 		D87122A61D3CA233005571B0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D87122A51D3CA233005571B0 /* ViewController.m */; };
@@ -18,7 +19,6 @@
 		D87122AB1D3CA233005571B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D87122AA1D3CA233005571B0 /* Assets.xcassets */; };
 		D87122AE1D3CA233005571B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D87122AC1D3CA233005571B0 /* LaunchScreen.storyboard */; };
 		D88831B01D422C8E009BCEB3 /* AppDelegate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D88831AF1D422C8E009BCEB3 /* AppDelegate+Extension.m */; };
-		D8ED23441D45EBB1009E1390 /* NSString+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = D8ED23431D45EBB1009E1390 /* NSString+Json.m */; };
 		D8F359B11D40B9D700B8C56E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D87122B71D3CA269005571B0 /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +30,8 @@
 		D816F9B61D41AEAC00357A65 /* HealthModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthModel.m; sourceTree = "<group>"; };
 		D816F9B81D41AEAC00357A65 /* HKHealthStore+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HKHealthStore+Extension.h"; sourceTree = "<group>"; };
 		D816F9B91D41AEAC00357A65 /* HKHealthStore+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HKHealthStore+Extension.m"; sourceTree = "<group>"; };
+		D8574BAC1D47009C004CF026 /* NSArray+jsonString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+jsonString.h"; sourceTree = "<group>"; };
+		D8574BAD1D47009C004CF026 /* NSArray+jsonString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+jsonString.m"; sourceTree = "<group>"; };
 		D871229B1D3CA232005571B0 /* health读取数据.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "health读取数据.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D871229F1D3CA232005571B0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D87122A11D3CA232005571B0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -43,9 +45,6 @@
 		D87122B71D3CA269005571B0 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		D88831AE1D422C8E009BCEB3 /* AppDelegate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Extension.h"; sourceTree = "<group>"; };
 		D88831AF1D422C8E009BCEB3 /* AppDelegate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Extension.m"; sourceTree = "<group>"; };
-		D8ED23421D45EBB1009E1390 /* NSString+Json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Json.h"; sourceTree = "<group>"; };
-		D8ED23431D45EBB1009E1390 /* NSString+Json.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Json.m"; sourceTree = "<group>"; };
-		D8ED23541D45EC4D009E1390 /* ACMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ACMacros.h; path = "health读取数据/HealthManager/ACMacros.h"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +62,7 @@
 		D816F9B11D41AEAC00357A65 /* HealthManager */ = {
 			isa = PBXGroup;
 			children = (
-				D8ED23411D45EBB1009E1390 /* NSString+Json */,
+				D8574BAB1D470089004CF026 /* NSArray+Json */,
 				D80DBEDB1D41C3F400027519 /* health读取数据.entitlements */,
 				D816F9B31D41AEAC00357A65 /* HealthManager.h */,
 				D816F9B41D41AEAC00357A65 /* HealthManager.m */,
@@ -73,6 +72,15 @@
 				D816F9B91D41AEAC00357A65 /* HKHealthStore+Extension.m */,
 			);
 			path = HealthManager;
+			sourceTree = "<group>";
+		};
+		D8574BAB1D470089004CF026 /* NSArray+Json */ = {
+			isa = PBXGroup;
+			children = (
+				D8574BAC1D47009C004CF026 /* NSArray+jsonString.h */,
+				D8574BAD1D47009C004CF026 /* NSArray+jsonString.m */,
+			);
+			path = "NSArray+Json";
 			sourceTree = "<group>";
 		};
 		D87122921D3CA232005571B0 = {
@@ -125,16 +133,6 @@
 				D87122B71D3CA269005571B0 /* HealthKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D8ED23411D45EBB1009E1390 /* NSString+Json */ = {
-			isa = PBXGroup;
-			children = (
-				D8ED23541D45EC4D009E1390 /* ACMacros.h */,
-				D8ED23421D45EBB1009E1390 /* NSString+Json.h */,
-				D8ED23431D45EBB1009E1390 /* NSString+Json.m */,
-			);
-			path = "NSString+Json";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,11 +217,11 @@
 				D87122A61D3CA233005571B0 /* ViewController.m in Sources */,
 				D88831B01D422C8E009BCEB3 /* AppDelegate+Extension.m in Sources */,
 				D87122A31D3CA233005571B0 /* AppDelegate.m in Sources */,
+				D8574BAE1D47009C004CF026 /* NSArray+jsonString.m in Sources */,
 				D816F9BD1D41AEAC00357A65 /* HKHealthStore+Extension.m in Sources */,
 				D87122A01D3CA232005571B0 /* main.m in Sources */,
 				D816F9BA1D41AEAC00357A65 /* HealthManager.m in Sources */,
 				D816F9BB1D41AEAC00357A65 /* HealthModel.m in Sources */,
-				D8ED23441D45EBB1009E1390 /* NSString+Json.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

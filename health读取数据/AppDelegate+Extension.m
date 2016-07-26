@@ -156,10 +156,12 @@
     [reqDic setObject:model.healthcontent forKey:@"healthcontent"];
     [self.todayArray addObject:reqDic];
     if (self.synctodaytime == 3) {
-        NSString *jsonString = [NSString jsonStringWithArray:self.todayArray];
-        NSLog(@"今日---->%@",jsonString);
+        NSArray *arr = [self.todayArray copy];
+        NSString *jsonstring = [arr arrayOrNSDictionaryToNSData];
+        NSLog(@"今日消耗---->%@",jsonstring);
     }
 }
+
 - (void)syncHealthDataWithJavaWith:(HealthManagerModel *)model With:(NSInteger )sums{
    
     self.synctimes ++;
@@ -169,8 +171,9 @@
     [reqDic setObject:model.healthcontent forKey:@"healthcontent"];
     [self.dataArray addObject:reqDic];
     if (self.synctimes == sums*3) {
-        NSString *jsonString = [NSString jsonStringWithArray:self.dataArray];
-        NSLog(@"---->%@",jsonString);
+        NSArray *arr = [self.todayArray copy];
+        NSString *jsonstring = [arr arrayOrNSDictionaryToNSData];
+        NSLog(@"以往纪录---->%@",jsonstring);
     }
 
     

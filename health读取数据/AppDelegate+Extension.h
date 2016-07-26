@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HealthManager.h"
-#import "NSString+Json.h"
+#import "NSArray+jsonString.h"
 
 #define kis_step @"step"
 #define kis_distance @"distance"
