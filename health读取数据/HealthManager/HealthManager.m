@@ -49,7 +49,8 @@ static HealthManager *manager = nil;
         if ([HKHealthStore isHealthDataAvailable]) {
             if (!self.healthStore ) {
                 self.healthStore = [[HKHealthStore alloc] init];
-               
+                
+                 //ios10 info.plist 配置（Privacy - Health Share Usage Description）
                 //需要读写的数据类型
 //                NSSet *writeDataTypes = [self dataTypesToWrite];
                 NSSet *readDataTypes = [self dataTypesRead];
@@ -269,7 +270,7 @@ static HealthManager *manager = nil;
         HKObserverQuery *query = [[HKObserverQuery alloc] initWithSampleType:sampleType predicate:nil updateHandler:^(HKObserverQuery * query, HKObserverQueryCompletionHandler  _Nonnull completionHandler, NSError * _Nullable error) {
             if (error) {
                 handler(0,error);
-                abort();
+//                abort();
             }
             [self getDistance:[HealthManager predicateForSamplesToday] completionHandler:^(double value, NSError *error) {
                 handler(value,error);
