@@ -32,6 +32,7 @@
 		D816F9B91D41AEAC00357A65 /* HKHealthStore+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HKHealthStore+Extension.m"; sourceTree = "<group>"; };
 		D8574BAC1D47009C004CF026 /* NSArray+jsonString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+jsonString.h"; sourceTree = "<group>"; };
 		D8574BAD1D47009C004CF026 /* NSArray+jsonString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+jsonString.m"; sourceTree = "<group>"; };
+		D8574C341D475B82004CF026 /* ACMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACMacros.h; sourceTree = "<group>"; };
 		D871229B1D3CA232005571B0 /* health读取数据.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "health读取数据.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D871229F1D3CA232005571B0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D87122A11D3CA232005571B0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -62,6 +63,7 @@
 		D816F9B11D41AEAC00357A65 /* HealthManager */ = {
 			isa = PBXGroup;
 			children = (
+				D8574C341D475B82004CF026 /* ACMacros.h */,
 				D8574BAB1D470089004CF026 /* NSArray+Json */,
 				D80DBEDB1D41C3F400027519 /* health读取数据.entitlements */,
 				D816F9B31D41AEAC00357A65 /* HealthManager.h */,
