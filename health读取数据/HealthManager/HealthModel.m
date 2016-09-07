@@ -12,8 +12,8 @@
 
 - (DateModel *)initWithNSPredicate:(NSPredicate *)predicate_date NSDate:(NSString *)startdate{
     if (self = [super init]) {
-        self.predicate_date = predicate_date;
-        self.startdate = startdate;
+        _predicate_date = predicate_date;
+        _startdate = startdate;
     }
     return self;
 }
@@ -29,9 +29,9 @@
 
 - (HealthDetailModel *)initWithStepDouble:(double)stepDouble andStartDate:(NSString *)startDate andEndDate:(NSString *)endDate{
     if (self = [super init]) {
-        self.stepDouble = stepDouble;
-        self.startDate = startDate;
-        self.endDate = endDate;
+        _stepDouble = stepDouble;
+        _startDate = startDate;
+        _endDate = endDate;
     }
     return self;
 }
@@ -45,7 +45,7 @@
 
 - (HealthModel *)initWithStepCounts:(NSMutableArray *)stepCounts{
     if (self = [super init]) {
-        self.stepCounts = stepCounts;
+        _stepCounts = stepCounts;
     }
     return self;
 }
@@ -61,9 +61,9 @@
 
 - (HealthManagerModel *)initWithType:(NSString *)type Startdate:(NSString *)startdate Healthcontent:(NSString *)healthcontent{
     if (self = [super init]) {
-        self.type = type;
-        self.startdate = startdate;
-        self.healthcontent = healthcontent;
+        _type = type;
+        _startdate = startdate;
+        _healthcontent = healthcontent;
     }
     return self;
 }
