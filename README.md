@@ -18,6 +18,7 @@
 8，获取某段时间的运动距离
 
 说明几点：
+
 一，上架app store的时候
 
 清空info.plist文件中的 Required device capabilities
